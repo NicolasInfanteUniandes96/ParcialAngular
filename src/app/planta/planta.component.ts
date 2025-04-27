@@ -17,9 +17,13 @@ export class PlantaComponent implements OnInit {
     this.getPlantas();
   }
 
+  totalInterior: number = 0;
+  totalExterior: number = 0;
   getPlantas() {
     this.plantaService.getPlantas().subscribe((plantas) => {
       this.plantas = plantas;
+      this.totalInterior = this.plantas.filter(planta => planta.tipo.toLowerCase() === 'interior').length;
+      this.totalExterior = this.plantas.filter(planta => planta.tipo.toLowerCase() === 'exterior').length;
     });
   }
 
